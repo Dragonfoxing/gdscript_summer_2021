@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0m0n8x4rh0eq"]
+
+[ext_resource type="Script" path="res://microprojects/stage_title/stage_title.gd" id="1"]
+[ext_resource type="FontFile" path="res://fonts/montreal/Montreal.tres" id="2"]
+[ext_resource type="FontFile" path="res://fonts/montreal/Montreal_16px.tres" id="3"]
+
+[sub_resource type="Theme" id="1"]
+
+[sub_resource type="StyleBoxEmpty" id="2"]
+
+[node name="StageTitleLayer" type="PanelContainer"]
+custom_minimum_size = Vector2(320, 0)
+offset_left = -168.0
+offset_top = -40.0
+offset_right = 152.0
+offset_bottom = 41.0
+grow_horizontal = 2
+size_flags_vertical = 3
+theme = SubResource("1")
+theme_override_styles/panel = SubResource("2")
+script = ExtResource("1")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[node name="Labels" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Labels"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Labels/CenterContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2")
+text = "Basic.tiff"
+horizontal_alignment = 3
+vertical_alignment = 1
+justification_flags = 96
+uppercase = true
+
+[node name="CenterContainer2" type="CenterContainer" parent="Labels"]
+layout_mode = 2
+
+[node name="Desc" type="Label" parent="Labels/CenterContainer2"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3")
+text = "(surely you can handle the first level?)"
+horizontal_alignment = 3
+vertical_alignment = 1
+justification_flags = 96

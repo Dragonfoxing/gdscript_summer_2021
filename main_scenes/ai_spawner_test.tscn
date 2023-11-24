@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://conqu7jrxtp8e"]
+
+[ext_resource type="PackedScene" path="res://microprojects/dumb_crawler_ua/crawler_spawner.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://microprojects/progress_bar/progress_bar.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://b0m0n8x4rh0eq" path="res://microprojects/stage_title/stage_title.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://microprojects/player/player.tscn" id="4"]
+[ext_resource type="Script" path="res://main_scenes/level_data.gd" id="5"]
+[ext_resource type="Script" path="res://main_scenes/level_manager.gd" id="6"]
+
+[sub_resource type="PhysicsMaterial" id="1"]
+friction = 0.0
+
+[node name="Root2D" type="Node2D"]
+
+[node name="LevelManager" type="Node" parent="."]
+script = ExtResource("6")
+
+[node name="LevelData" type="Node" parent="LevelManager"]
+script = ExtResource("5")
+
+[node name="Level" type="Node" parent="."]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="StageTitleLayer" parent="UI" instance=ExtResource("3")]
+offset_left = 80.0
+offset_top = 16.0
+offset_right = 400.0
+offset_bottom = 97.0
+fadeSpeed = 0.75
+
+[node name="ProgressBar" parent="UI" instance=ExtResource("2")]
+position = Vector2(0, 636)
+
+[node name="Player" parent="." instance=ExtResource("4")]
+position = Vector2(240, 560)
+collision_mask = 42
+speed = 150.0
+focusSpeed = 100.0
+
+[node name="Spawner" parent="." instance=ExtResource("1")]
+position = Vector2(240, 200)
+minChance = 0.9
+
+[node name="Spawned" type="Node2D" parent="."]
+
+[node name="PlayerBoundary" type="StaticBody2D" parent="."]
+visible = false
+position = Vector2(248, 344)
+physics_material_override = SubResource("1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerBoundary"]
+build_mode = 1
+polygon = PackedVector2Array(-248, 296, 232, 296, 232, -344, -248, -344)

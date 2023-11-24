@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://microprojects/custom_proximity_group/custom_proximity_group.tscn" type="PackedScene" id=1]
+[ext_resource path="res://microprojects/custom_proximity_group/proximity_group_tester.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="CircleShape2D" id=2]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 120, 64 )
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ProximityGroup2D" parent="Node2D" groups=[
+"banana",
+] instance=ExtResource( 1 )]
+group_name = "banana"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/ProximityGroup2D"]
+shape = SubResource( 1 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Node2D"]
+polygon = PackedVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
+
+[node name="Node2D2" type="Node2D" parent="."]
+position = Vector2( 24, 0 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ProximityGroup2D2" parent="Node2D2" groups=[
+"banana",
+] instance=ExtResource( 1 )]
+gravity_direction = Vector2( 0, 0 )
+gravity = 0.0
+linear_damp = 0.0
+angular_damp = 0.0
+group_name = "banana"
+dispatch_mode = 1
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D2/ProximityGroup2D2"]
+shape = SubResource( 2 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Node2D2"]
+polygon = PackedVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
+
+[connection signal="area_entered" from="Node2D/ProximityGroup2D" to="Node2D" method="_on_collided"]
